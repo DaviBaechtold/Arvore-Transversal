@@ -1,0 +1,45 @@
+//Davi Baechtold Campos - PEDA - Arvores 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Item {
+  struct Item *esquerda;
+  int valor;
+  struct Item *direita;
+};
+
+struct Item *novoItem(int valor) {
+  struct Item *Item = (struct Item *)malloc(sizeof(struct Item));
+  Item->esquerda = NULL;
+  Item->valor = valor;
+  Item->direita = NULL;
+
+  return Item;
+}
+void PreOrder(struct Item *raiz) {
+  if (raiz == NULL)
+    return;
+
+  printf("%d ", raiz->valor);
+  PreOrder(raiz->esquerda);
+  PreOrder(raiz->direita);
+}
+
+void InOrder(struct Item *raiz) {
+  if (raiz == NULL)
+    return;
+
+  InOrder(raiz->esquerda);
+  printf("%d ", raiz->valor);
+  InOrder(raiz->direita);
+}
+
+void PostOrder(struct Item *raiz) {
+  if (raiz == NULL)
+    return;
+
+  PostOrder(raiz->esquerda);
+  PostOrder(raiz->direita);
+  printf("%d ", raiz->valor);
+}
